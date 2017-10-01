@@ -70,4 +70,5 @@ and the most active groups developing SU2 are:
    - Prof. Rafael Palacios' group at Imperial College London.
    - Prof. Edwin van der Weide's group at the University of Twente.
    - Prof. Vincent Terrapon's group at the University of Liege.
-# SU2_v.50_shock_tube
+# SU2_v.5_shock_tube
+In SU2 (ver. 5.0.0 "Raven"): The Open-Source CFD Code, further modifications are done to simulate shock tube problem easily. However, results are not validated. 
