@@ -823,7 +823,20 @@ private:
   *default_htp_axis,          /*!< \brief Default HTP axis for the COption class. */
   *default_ffd_axis,          /*!< \brief Default FFD axis for the COption class. */
   *default_inc_crit;          /*!< \brief Default incremental criteria array for the COption class. */
-  
+  unsigned short Kind_TestCase;
+  su2double Density_FreeStream_1,
+  Density_FreeStream_2,
+  Pressure_FreeStream_1,
+  Pressure_FreeStream_2,
+  Temperature_FreeStream_1,
+  Temperature_FreeStream_2,
+  Mach_FreeStream_1,
+  Mach_FreeStream_2,
+  VelocityX_FreeStream_1,
+  VelocityX_FreeStream_2, 
+  VelocityY_FreeStream_1,
+  VelocityY_FreeStream_2;
+	
   /*--- all_options is a map containing all of the options. This is used during config file parsing
    to track the options which have not been set (so the default values can be used). Without this map
    there would be no list of all the config file options. ---*/
@@ -6778,6 +6791,22 @@ public:
    * \brief Get the AD support.
    */
   bool GetAD_Mode(void);
+  
+  /* for shock tube problem*/
+  unsigned short GetKind_TestCase(void);
+  
+  /*--------New FreeStream Types (for left & right)------------*/
+  su2double GetDensity_FreeStream_1(void);
+  su2double GetDensity_FreeStream_2(void);
+  su2double GetPressure_FreeStream_1(void);
+  su2double GetPressure_FreeStream_2(void);	
+  su2double GetTemperature_FreeStream_1(void);
+  su2double GetTemperature_FreeStream_2(void);
+  su2double GetVelocityX_FreeStream_1(void);
+  su2double GetVelocityX_FreeStream_2(void);
+  su2double GetVelocityY_FreeStream_1(void);
+  su2double GetVelocityY_FreeStream_2(void);
+
 };
 
 #include "config_structure.inl"

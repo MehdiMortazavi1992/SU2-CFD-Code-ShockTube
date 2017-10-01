@@ -277,7 +277,16 @@ static const map<string, ENUM_MAT_COMPRESS> MatComp_Map = CCreateMap<string, ENU
 ("COMPRESSIBLE", COMPRESSIBLE_MAT)
 ("INCOMPRESSIBLE", INCOMPRESSIBLE_MAT);
 
-
+/*!
+ * \brief different TEST cases
+*/
+enum ENUM_TESTCASE {
+  SHOCKTUBE = 0,			/*!< \brief shock tube test case. */
+  CASE_X = 1,				
+};
+static const map<string, ENUM_TESTCASE> TestCase_Map = CCreateMap<string, ENUM_TESTCASE>
+("SHOCKTUBE", SHOCKTUBE)
+("CASE_X", CASE_X);
 
 /*!
  * \brief types of interpolators

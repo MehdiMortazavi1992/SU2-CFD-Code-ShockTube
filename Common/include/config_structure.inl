@@ -1481,3 +1481,18 @@ inline bool CConfig::GetAD_Mode(void) { return AD_Mode;}
 inline unsigned short CConfig::GetFFD_Blending(void){return FFD_Blending;}
 
 inline su2double* CConfig::GetFFD_BSplineOrder(){return FFD_BSpline_Order;}
+
+inline unsigned short CConfig::GetKind_TestCase(void) { return Kind_TestCase; }
+
+inline su2double CConfig::GetDensity_FreeStream_1(void) { return Density_FreeStream_1; }
+inline su2double CConfig::GetDensity_FreeStream_2(void) { return Density_FreeStream_2; }
+inline su2double CConfig::GetTemperature_FreeStream_1(void) { return Temperature_FreeStream_1; }
+inline su2double CConfig::GetTemperature_FreeStream_2(void) { return Temperature_FreeStream_2; }
+inline su2double CConfig::GetPressure_FreeStream_1(void) { return Pressure_FreeStream_1; }
+inline su2double CConfig::GetPressure_FreeStream_2(void) { return Pressure_FreeStream_2; }
+inline su2double CConfig::GetVelocityX_FreeStream_1(void) { return VelocityX_FreeStream_1; }
+inline su2double CConfig::GetVelocityX_FreeStream_2(void) { return VelocityX_FreeStream_2; }
+inline su2double CConfig::GetVelocityY_FreeStream_1(void) { return VelocityY_FreeStream_1; }
+inline su2double CConfig::GetVelocityY_FreeStream_2(void) { return VelocityY_FreeStream_2; }
+
+

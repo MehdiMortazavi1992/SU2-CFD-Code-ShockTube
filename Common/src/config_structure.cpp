@@ -1750,6 +1750,21 @@ void CConfig::SetConfig_Options(unsigned short val_iZone, unsigned short val_nZo
   /* DESCRIPTION: Activate ParMETIS mode for testing */
   addBoolOption("PARMETIS", ParMETIS, false);
   
+  /* to speficy whether it is shock tube problem in config-file*/
+	addEnumOption("TESTCASE_TYPE", Kind_TestCase, TestCase_Map, SHOCKTUBE);
+  /*-----New FreeStream --------*/
+
+  addDoubleOption("FREESTREAM_DENSITY_1", Density_FreeStream_1, 0.0);
+  addDoubleOption("FREESTREAM_DENSITY_2", Density_FreeStream_2, 0.0);
+  addDoubleOption("FREESTREAM_PRESSURE_1", Pressure_FreeStream_1, 0.0);
+  addDoubleOption("FREESTREAM_PRESSURE_2", Pressure_FreeStream_2, 0.0);
+  addDoubleOption("FREESTREAM_TEMPERATURE_1", Temperature_FreeStream_1, 0.0);
+  addDoubleOption("FREESTREAM_TEMPERATURE_2", Temperature_FreeStream_2, 0.0);
+  addDoubleOption("FREESTREAM_VELOCITYX_1", VelocityX_FreeStream_1, 0.0);
+  addDoubleOption("FREESTREAM_VELOCITYX_2", VelocityX_FreeStream_2, 0.0);
+  addDoubleOption("FREESTREAM_VELOCITYY_1", VelocityY_FreeStream_1, 0.0);
+  addDoubleOption("FREESTREAM_VELOCITYY_2", VelocityY_FreeStream_2, 0.0);
+  
   /* END_CONFIG_OPTIONS */
 
 }

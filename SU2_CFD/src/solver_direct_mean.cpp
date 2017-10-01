@@ -4414,6 +4414,79 @@ void CEulerSolver::SetInitialCondition(CGeometry **geometry, CSolver ***solver_c
       }
     }
   }
+  
+  
+  
+  /*---Initialization for shock tube eproblem----------*/
+  if((config->GetKind_TestCase()== SHOCKTUBE) && ExtIter==0) {
+	  
+	  su2double *Coord, Pressure, Temperature, Density,
+	  VelocityX, VelocityY, Energy, ModVel2, sol1,sol2,sol3,sol4;
+	  
+	  su2double Gamma_Minus_One = Gamma - 1.0;
+      su2double Gas_Constant = config->GetGas_Constant();
+	  
+	    for (iMesh = 0; iMesh <= config->GetnMGLevels(); iMesh++) {
+        
+			for (iPoint = 0; iPoint < geometry[iMesh]->GetnPoint(); iPoint++) {
+	  	  
+	        Coord = geometry[iMesh]->node[iPoint]->GetCoord();
+	        
+			/*change required for different length of shock tube*/	
+            if(Coord[0] <= 50.0) {
+					      
+	        Pressure    = config->GetPressure_FreeStream_1();	
+			Temperature = config->GetTemperature_FreeStream_1();
+			Density     = Pressure/(Gas_Constant*Temperature);
+			VelocityX   = config->GetVelocityX_FreeStream_1();
+			VelocityY   = config->GetVelocityY_FreeStream_1();
+			ModVel2     = VelocityX*VelocityX+VelocityY*VelocityY;
+	        
+	        
+	        /*-----Sol (rho, rho*u, rhu*v, rho*E)-----*/
+            sol1=Density;
+            sol2=Density*VelocityX;
+            sol3=Density*VelocityY;
+            sol4=Pressure/(Gamma_Minus_One)+0.5*Density*ModVel2;
+                                    
+	        solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(0, sol1);
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(1, sol2); 
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(2, sol3);
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(nVar-1,sol4);
+            
+                        
+	       }
+        
+      	    else {
+				
+			Pressure    = config->GetPressure_FreeStream_2();	
+			Temperature = config->GetTemperature_FreeStream_2();
+			Density     = Pressure/(Gas_Constant*Temperature);
+			VelocityX   = config->GetVelocityX_FreeStream_2();
+			VelocityY   = config->GetVelocityY_FreeStream_2();
+			ModVel2     = VelocityX*VelocityX+VelocityY*VelocityY;
+	        
+	        
+	        /*-----Sol (rho, rho*u, rhu*v, rho*E)-----*/
+            sol1=Density;
+            sol2=Density*VelocityX;
+            sol3=Density*VelocityY;
+            sol4=Pressure/(Gamma_Minus_One)+0.5*Density*ModVel2;
+                                    
+	        solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(0, sol1);
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(1, sol2); 
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(2, sol3);
+            solver_container[iMesh][FLOW_SOL]->node[iPoint]->SetSolution(nVar-1,sol4);
+            								
+			}
+	  	  
+	      }
+	  	  	         /*--- Set the MPI communication ---*/
+          solver_container[iMesh][FLOW_SOL]->Set_MPI_Solution(geometry[iMesh], config);
+      
+	   }
+  }
+    
 }
 
 void CEulerSolver::Preprocessing(CGeometry *geometry, CSolver **solver_container, CConfig *config, unsigned short iMesh, unsigned short iRKStep, unsigned short RunTime_EqSystem, bool Output) {
